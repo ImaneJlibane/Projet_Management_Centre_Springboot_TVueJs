@@ -1,5 +1,7 @@
 package univ.fac.enities;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,10 +14,17 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AppRole {
+public class AppRole implements GrantedAuthority{
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String roleName;
+
+  @Override
+  public String getAuthority() {
+      return roleName;
+  }
+  
+  
 
   }

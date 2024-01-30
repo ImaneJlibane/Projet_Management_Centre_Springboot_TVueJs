@@ -1,11 +1,12 @@
 package univ.fac.enities;
 
-import java.util.Date;
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +21,8 @@ public class Evaluation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int raiting;
+    
     @ManyToOne
-    private User userEvaluation;
+    @JoinColumn(name = "user_id")
+    private Etudiant user;
 }
