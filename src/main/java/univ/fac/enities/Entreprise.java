@@ -1,6 +1,6 @@
 package univ.fac.enities;
 
-import java.util.Date;
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,6 +21,8 @@ public class Entreprise {
 		  private String username;
 		  private String password;
 		  private String nom;
-		  private String ville;
+		  private String adresse;
 		  private String numeroTel;
+		  private String url;
+		
 }
