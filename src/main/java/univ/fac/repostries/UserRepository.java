@@ -13,7 +13,8 @@ import univ.fac.enities.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-     
+  Optional<User> findOneByUsernameAndPassword(String username, String password);
+    
 public User findByUsername(String username);
 }
 
