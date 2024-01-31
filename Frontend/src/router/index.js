@@ -11,8 +11,33 @@ import PlannificationEntreprise_A from "../views/AssistantDashboard/Plannificati
 const routes = [
 
 
-
-
+  {
+    path: '/',
+    name: 'home',
+    component: HomeView
+  },
+  {
+    path: '/Courses',
+    name: 'Courses',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/Courses.vue')
+  },
+  {
+    path: '/Espaceformateur',
+    name: 'Espaceformateur',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Espaceformateur.vue')
+  },
+  {
+    path: '/Etudiant',
+    name: 'Etudiant',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Etudiant.vue')
+  },  {
+    path: '/programmme/:formationId',
+    name: 'Programmme',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Programmme.vue')
+  },
   
   {
     path: '/Login',
