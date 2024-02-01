@@ -81,7 +81,7 @@ export default {
   computed: {
     isNavbarPage() {
       // Check if the current route is one of the navbar pages
-      const navbarPages = ['/', '/Courses', '/Espaceformateur', '/Etudiant'];
+      const navbarPages = ['/', '/Courses', '/Espaceformateur', '/Etudiant', '/Login'];
       return navbarPages.includes(this.$route.path);
     }
   }
