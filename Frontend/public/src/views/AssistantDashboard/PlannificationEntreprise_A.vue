@@ -9,30 +9,16 @@
         <h3><img src="@/assets/StyleDashboard/img/logo.png" class="img-fluid" style="margin-bottom: 9px;"/><span style="color: black;">C</span>oding<span style="color: black;">G</span>uide</h3>
       </div>
       <ul class="list-unstyled component m-0 text-start">
-          <li class="">
-              <a href="AdminDashboard" class="dashboard"><i class="material-icons">dashboard</i>Gérer Assistant </a>
-          </li>
   
           <li class="">
-              <a href="GererFormateur_F" class="">
-                  <i class="material-icons">extension</i>Gérer Formateur
-              </a>
-          </li>
-  
-          <li class="">
-              <a href="GererEntreprise_F" class="">
+              <a href="AssistantDashboard" class="">
                   <i class="material-icons">border_color</i>Gérer Entreprise
               </a>
           </li>
   
-          <li class="">
-              <a href="GererFormation_F" class="">
-                  <i class="material-icons">grid_on</i>Gérer Formation
-              </a>
-          </li>
   
           <li class="active">
-              <a href="PlannificationEntreprise_F" class=""><i class="material-icons">date_range</i>Formation d'entreprise</a>
+              <a href="PlannificationEntreprise_A" class=""><i class="material-icons">date_range</i>Formation d'entreprise</a>
           </li>
   
           <li class="">
@@ -174,19 +160,35 @@
           durationBarVisible: false,
           timeRangeSelectedHandling: "Enabled",
           onTimeRangeSelected: async (args) => {
-            const modal = await DayPilot.Modal.prompt("Create a new event:", "Event 1");
-            const dp = args.control;
-            dp.clearSelection();
-            if (modal.canceled) {
-              return;
-            }
-            dp.events.add({
-              start: args.start,
-              end: args.end,
-              id: DayPilot.guid(),
-              text: modal.result
-            });
-          },
+  const modalResult = await DayPilot.Modal.form({
+    title: "Create a new event",
+    items: [
+      { name: "text", legend: "Event Title", id: "eventTitle", required: true },
+      { name: "location", legend: "Event Location", id: "eventLocation" },
+      { name: "description", legend: "Event Description", id: "eventDescription" }
+    ],
+    focus: "eventTitle"
+  });
+
+  const dp = args.control;
+  dp.clearSelection();
+
+  if (modalResult.canceled) {
+    return;
+  }
+
+  const { text, location, description } = modalResult.result;
+
+  dp.events.add({
+    start: args.start,
+    end: args.end,
+    id: DayPilot.guid(),
+    text,
+    location,
+    description
+  });
+},
+
           eventDeleteHandling: "Disabled",
           onEventMoved: () => {
             console.log("Event moved");

@@ -6,38 +6,25 @@
 
 <div id="sidebar">
     <div class="sidebar-header">
-      <h3><img src="@/assets/StyleDashboard/img/logo.png" class="img-fluid" style="margin-bottom: 9px;"/><span style="color: black;">C</span>oding<span style="color: black;">G</span>uide</h3>
+        <h3><img src="@/assets/StyleDashboard/img/logo.png" class="img-fluid" style="margin-bottom: 9px;"/><span style="color: black;">C</span>oding<span style="color: black;">G</span>uide</h3>
     </div>
     <ul class="list-unstyled component m-0 text-start">
-        <li class="">
-            <a href="AdminDashboard" class="dashboard"><i class="material-icons">dashboard</i>Gérer Assistant </a>
-        </li>
+
 
         <li class="active">
-            <a href="GererFormateur_F" class="">
-                <i class="material-icons">extension</i>Gérer Formateur
-            </a>
-        </li>
-
-        <li class="">
-            <a href="GererEntreprise_F" class="">
+            <a href="GererEntreprise_A" class="">
                 <i class="material-icons">border_color</i>Gérer Entreprise
             </a>
         </li>
 
-        <li class="">
-            <a href="GererFormation_F" class="">
-                <i class="material-icons">grid_on</i>Gérer Formation
-            </a>
-        </li>
 
-        <li class="">
-            <a href="PlannificationEntreprise_F" class=""><i class="material-icons">date_range</i>Formation d'entreprise</a>
-        </li>
+      <li class="">
+          <a href="PlannificationEntreprise_A" class=""><i class="material-icons">date_range</i>Formation d'entreprise</a>
+      </li>
 
-        <li class="">
-            <a href="" class=""><i class="material-icons">date_range</i>Formation d'Etudiant</a>
-        </li>
+      <li class="">
+          <a href="" class=""><i class="material-icons">date_range</i>Formation d'Etudiant</a>
+      </li>
 
         <li class="">
             <a href="Login" class=""><i class="material-icons">logout</i>Logout </a>
@@ -100,7 +87,7 @@
            </div>
            
            <div class="xp-breadcrumbbar text-center">
-              <h4 class="page-title">Dashboard Admin</h4>
+              <h4 class="page-title">Dashboard Assistant</h4>
            </div>
            
            
@@ -117,12 +104,12 @@
                <div class="table-title">
                  <div class="row">
                    <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
-                    <h2 class="ml-lg-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gérer  Formateur</h2>
+                    <h2 class="ml-lg-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gérer  Entreprise</h2>
                  </div>
                  <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
                    <a href="#" @click="addEmployee"  class="btn btn-success" data-toggle="modal">
                    <i class="material-icons">&#xE147;</i>
-                   <span style="color: white;">Ajouter Formateur</span>
+                   <span style="color: white;">Ajouter Entreprise</span>
                    </a>
                  </div>
                  </div>
@@ -138,15 +125,10 @@
               </span>
             </th>
           <th>Nom</th>
-          <th>Prénom</th>
           <th>Email</th>
           <th>NumeroTél</th>
-          <th>Ville</th>
-          <th>DateNaissance</th>
-          <th>Username</th>
-          <th>Specialité</th>
-          <th>Niveau Scolaire</th>
-          <th>Remarques</th>
+          <th>Adresse</th>
+          <th>Url</th>
           <th>Actions</th>
           </tr>
         </thead>
@@ -159,15 +141,10 @@
               </span>
             </td>
           <td>{{ employee.nom }}</td>
-          <td>{{ employee.prenom }}</td>
-          <td>{{ employee.email }}</td>
           <td>{{ employee.numeroTel }}</td>
-          <td>{{ employee.ville }}</td>
-          <td>{{ employee.dateNaissance }}</td>
-          <td>{{ employee.username }}</td>
-          <td>{{ employee.specialite }}</td>
-          <td>{{ employee.niveauScolaire }}</td>
-          <td>{{ employee.remarques }}</td>
+          <td>{{ employee.email }}</td>
+          <td>{{ employee.adresse }}</td>
+          <td>{{ employee.url }}</td>
             <td>
               <!-- Vue event handling for edit and delete actions -->
               <a href="#" @click="editEmployee(index)" class="edit">
@@ -204,7 +181,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Ajouter Formateur</h5>
+          <h5 class="modal-title">Ajouter Entreprise</h5>
           <button type="button" class="close" @click="cancelAddEmployee" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -215,44 +192,20 @@
         <input type="text" class="form-control" required v-model="employeeData.nom">
       </div>
       <div class="form-group">
-          <label>Prénom</label>
-        <input type="text" class="form-control" required v-model="employeeData.prenom">
-      </div>
-      <div class="form-group">
           <label>Email</label>
         <input type="email" class="form-control" required v-model="employeeData.email">
       </div>
       <div class="form-group">
-          <label>NuméroTel</label>
+          <label>Numéro Téléphone</label>
         <input type="text" class="form-control" required v-model="employeeData.numeroTel">
       </div>
       <div class="form-group">
-          <label>Vile</label>
-        <input type="text" class="form-control" required v-model="employeeData.ville">
+          <label>Adresse</label>
+        <input type="text" class="form-control" required v-model="employeeData.adresse">
       </div>
       <div class="form-group">
-          <label>DateNaissance</label>
-        <input type="date" class="form-control" required v-model="employeeData.dateNaissance">
-      </div>
-      <div class="form-group">
-          <label>Username</label>
-        <input type="text" class="form-control" required v-model="employeeData.username">
-      </div> 
-      <div class="form-group">
-          <label>Password</label>
-        <input type="password" class="form-control" required v-model="employeeData.password">
-      </div>
-      <div class="form-group">
-          <label>Specialité</label>
-        <input type="text" class="form-control" required v-model="employeeData.specialite">
-      </div>
-      <div class="form-group">
-          <label>Niveau Scolaire</label>
-        <input type="text" class="form-control" required v-model="employeeData.niveauScolaire">
-      </div> 
-      <div class="form-group">
-          <label>Remarques</label>
-        <input type="text" class="form-control" required v-model="employeeData.remarques">
+          <label>Url</label>
+        <input type="text" class="form-control" required v-model="employeeData.url">
       </div>
         </div>
         <div class="modal-footer">
@@ -275,55 +228,31 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-          <h5 class="modal-title">Modifier Formateur</h5>
+          <h5 class="modal-title">Modifier Entreprise</h5>
           <button type="button" class="close" @click="cancelEditedEmployee" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div class="form-group">
-          <label>Name</label>
+          <label>Nom</label>
         <input type="text" class="form-control" required v-model="editEmployeeData.nom">
-      </div>
-      <div class="form-group">
-          <label>Prénom</label>
-        <input type="emil" class="form-control" required v-model="editEmployeeData.prenom">
       </div>
       <div class="form-group">
           <label>Email</label>
         <input type="email" class="form-control" required v-model="editEmployeeData.email">
       </div>
       <div class="form-group">
-          <label>NuméroTel</label>
+          <label>Numéro Téléphone</label>
         <input type="text" class="form-control" required v-model="editEmployeeData.numeroTel">
       </div>
       <div class="form-group">
-          <label>Vile</label>
-        <input type="text" class="form-control" required v-model="editEmployeeData.ville">
+          <label>Adresse</label>
+        <input type="text" class="form-control" required v-model="editEmployeeData.adresse">
       </div>
       <div class="form-group">
-          <label>DateNaissance</label>
-        <input type="date" class="form-control" required v-model="editEmployeeData.dateNaissance">
-      </div>
-      <div class="form-group">
-          <label>Username</label>
-        <input type="text" class="form-control" required v-model="editEmployeeData.username">
-      </div> 
-      <div class="form-group">
-          <label>Password</label>
-        <input type="password" class="form-control" required v-model="editEmployeeData.password">
-      </div>
-      <div class="form-group">
-          <label>Specialité</label>
-        <input type="text" class="form-control" required v-model="editEmployeeData.specialite">
-      </div>
-      <div class="form-group">
-          <label>Niveau Scolaire</label>
-        <input type="text" class="form-control" required v-model="editEmployeeData.niveauScolaire">
-      </div> 
-      <div class="form-group">
-          <label>Remarques</label>
-        <input type="text" class="form-control" required v-model="editEmployeeData.remarques">
+          <label>Url</label>
+        <input type="text" class="form-control" required v-model="editEmployeeData.url">
       </div>
         </div>
             <div class="modal-footer">
@@ -343,7 +272,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Supprimer Formateur</h5>
+          <h5 class="modal-title">Supprimer Entreprise</h5>
           <button type="button" class="close"  @click="cancelDeletedEmployee" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -389,30 +318,18 @@ import axios from 'axios';
         employees: [],
         employeeData: {
           nom: '',
-          prenon: '',
           email: '',
           numeroTel: '',
-          ville: '',
-          dateNaissance: '',
-          username: '',
-          password: '',
-          specialite: '',
-          niveauScolaire: '',
-          remarques: '',
+          adresse: '',
+          url: '',
 
         },
         editEmployeeData: {
           nom: '',
-          prenon: '',
           email: '',
           numeroTel: '',
-          ville: '',
-          dateNaissance: '',
-          username: '',
-          password: '',
-          specialite: '',
-          niveauScolaire: '',
-          remarques: '',
+          adresse: '',
+          url: '',
         },
         editedEmployeeIndex: null,
       };
@@ -443,88 +360,83 @@ import axios from 'axios';
 
     methods: {
     getEmployees() {
-            fetch(`http://localhost:8080/formateur/all`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // Set the assistants data property with the fetched data
-                    this.employees = data;
-                })
-                .catch(error => {
-                    console.error('Error fetching or parsing data:', error);
-                });
+      fetch(`http://localhost:8080/entreprise/all`)
+              .then(response => {
+                  if (!response.ok) {
+                      throw new Error('Network response was not ok');
+                  }
+                  return response.json();
+              })
+              .then(data => {
+                  // Set the entreprises data property with the fetched data
+                  this.employees = data;
+              })
+              .catch(error => {
+                  console.error('Error fetching or parsing data:', error);
+              });
         },
 
 
     MethodaddEmployee() {
-      axios.post('http://localhost:8080/formateur/add', this.employeeData)
-      .then(response => {
-        // Handle the success response
-        console.log('Formateur saved successfully:', response.data);
-        // Optionally, you can show a success message to the user
-      }).then(data => {
-                  console.log(data);
-                  this.getEmployees();
-              })
-      .catch(error => {
-        // Handle the error
-        console.error('Error saving student:', error);
-        // Optionally, you can show an error message to the user
-        alert('Error saving formateur. Please try again.');
-      });
+      fetch('http://localhost:8080/entreprise/save', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(this.employeeData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                this.getEmployees();
+            })
+            .catch(error => {
+                console.error('Error adding entreprise:', error);
+            });
         $('#addEmployeeModal').modal('hide');
       },
 
       MethoddeleteEmployee(id) {
-    fetch(`http://localhost:8080/formateur/delete/${id}`, {
-        method: 'DELETE'
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log(data);
-        // After deleting, fetch and update the employee list
-        this.getEmployees();
-        $('#deleteEmployeeModal').modal('hide');
-    })
-    .catch(error => {
-        console.error('Error deleting assistant:', error);
-    });
+          fetch(`http://localhost:8080/entreprise/delete/${id}`, {
+              method: 'DELETE'
+          })
+              .then(data => {
+                  console.log(data);
+                  // After deleting, fetch and update the entreprise list
+                  window.location.reload();
+                  this.getEmployees();
+                  $('#deleteEmployeeModal').modal('hide');
+
+              })
+              .catch(error => {
+                  console.error('Error deleting entreprise:', error);
+              });
 },
  
 
     MethodeditEmployee() {
-      fetch(`http://localhost:8080/formateur/modif/${this.editEmployeeData.id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(this.editEmployeeData) // Send this.assistant, not this.patient
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Update failed'); // Handle non-200 status codes
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log(data);
-    this.getEmployees();
-           // Show the edit modal
-           $('#editEmployeeModal').modal('hide'); 
-  })
-  .catch(error => {
-    console.error('Error updating assistant:', error);
-    // Handle the error appropriately, e.g., display an error message to the user
-  });
+      fetch(`http://localhost:8080/entreprise/modif/${this.editEmployeeData.id}`, {
+  method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(this.editEmployeeData) // Send this.entreprise, not this.patient
+})
+.then(response => {
+  if (!response.ok) {
+    throw new Error('Update failed'); // Handle non-200 status codes
+  }
+  return response.json();
+})
+.then(data => {
+  console.log(data);
+  this.getEmployees();
+
+})
+.catch(error => {
+  console.error('Error updating entreprise:', error);
+  // Handle the error appropriately, e.g., display an error message to the user
+});
         // Show the edit modal
         $('#editEmployeeModal').modal('hide');
       },

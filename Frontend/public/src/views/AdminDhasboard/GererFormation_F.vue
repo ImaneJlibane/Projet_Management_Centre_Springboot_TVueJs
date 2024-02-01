@@ -19,25 +19,25 @@
               </a>
           </li>
   
-          <li class="active">
+          <li class="">
               <a href="GererEntreprise_F" class="">
                   <i class="material-icons">border_color</i>Gérer Entreprise
               </a>
           </li>
   
+          <li class="active">
+              <a href="GererFormation_F" class="">
+                  <i class="material-icons">grid_on</i>Gérer Formation
+              </a>
+          </li>
+  
           <li class="">
-            <a href="GererFormation_F" class="">
-                <i class="material-icons">grid_on</i>Gérer Formation
-            </a>
-        </li>
-
-        <li class="">
-            <a href="PlannificationEntreprise_F" class=""><i class="material-icons">date_range</i>Formation d'entreprise</a>
-        </li>
-
-        <li class="">
-            <a href="" class=""><i class="material-icons">date_range</i>Formation d'Etudiant</a>
-        </li>
+              <a href="PlannificationEntreprise_F" class=""><i class="material-icons">date_range</i>Formation d'entreprise</a>
+          </li>
+  
+          <li class="">
+              <a href="" class=""><i class="material-icons">date_range</i>Formation d'Etudiant</a>
+          </li>
   
           <li class="">
               <a href="Login" class=""><i class="material-icons">logout</i>Logout </a>
@@ -117,12 +117,12 @@
                  <div class="table-title">
                    <div class="row">
                      <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
-                      <h2 class="ml-lg-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gérer  Entreprise</h2>
+                      <h2 class="ml-lg-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gérer  Formation</h2>
                    </div>
                    <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
                      <a href="#" @click="addEmployee"  class="btn btn-success" data-toggle="modal">
                      <i class="material-icons">&#xE147;</i>
-                     <span style="color: white;">Ajouter Entreprise</span>
+                     <span style="color: white;">Ajouter Formation</span>
                      </a>
                    </div>
                    </div>
@@ -137,11 +137,15 @@
                   <label for="selectAll"></label>
                 </span>
               </th>
-            <th>Nom</th>
-            <th>Email</th>
-            <th>NumeroTél</th>
-            <th>Adresse</th>
-            <th>Url</th>
+            <th>titre</th>
+            <th>objectifs</th>
+            <th>description</th>
+            <th>nbHeure</th>
+            <th>bugdet</th>
+            <th>ville</th>
+            <th>categorieFormation</th>
+            <th>dateDebut</th>
+            <th>dateFin</th>
             <th>Actions</th>
             </tr>
           </thead>
@@ -153,19 +157,23 @@
                   <label :for="'checkbox' + (index + 1)"></label>
                 </span>
               </td>
-            <td>{{ employee.nom }}</td>
-            <td>{{ employee.numeroTel }}</td>
-            <td>{{ employee.email }}</td>
-            <td>{{ employee.adresse }}</td>
-            <td>{{ employee.url }}</td>
+            <td>{{ employee.titre}}</td>
+            <td>{{ employee.objectifs }}</td>
+            <td>{{ employee.description }}</td>
+            <td>{{ employee.nbHeure }}</td>
+            <td>{{ employee.bugdet }}</td>
+            <td>{{ employee.ville }}</td>
+            <td>{{ employee.categorieFormation.nomCat }}</td>
+            <td>{{ employee.dateDebut }}</td>
+            <td>{{ employee.dateFin }}</td>
               <td>
                 <!-- Vue event handling for edit and delete actions -->
                 <a href="#" @click="editEmployee(index)" class="edit">
-                <i class="material-icons" data-toggle="tooltip" title="Edit" style="color:#FFC107;">&#xE254;</i>
-              </a>
-              <a href="#" @click="deleteEmployee(employee.id)" class="delete" style="color:#F44336;">
-                <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-              </a>
+                  <i class="material-icons" data-toggle="tooltip" title="Edit" style="color:#FFC107;">&#xE254;</i>
+                </a>
+                <a href="#" @click="deleteEmployee(employee.id)" class="delete" style="color:#F44336;">
+                  <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                </a>
               </td>
             </tr>
           </tbody>
@@ -194,32 +202,52 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Ajouter Entreprise</h5>
+            <h5 class="modal-title">Ajouter Formation</h5>
             <button type="button" class="close" @click="cancelAddEmployee" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
             <div class="form-group">
-            <label>Nom</label>
-          <input type="text" class="form-control" required v-model="employeeData.nom">
+            <label>titre</label>
+          <input type="text" class="form-control" required v-model="employeeData.titre">
         </div>
         <div class="form-group">
-            <label>Email</label>
-          <input type="email" class="form-control" required v-model="employeeData.email">
+            <label>description</label>
+          <input type="text" class="form-control" required v-model="employeeData.description">
         </div>
         <div class="form-group">
-            <label>Numéro Téléphone</label>
-          <input type="text" class="form-control" required v-model="employeeData.numeroTel">
+            <label>objectifs</label>
+          <input type="text" class="form-control" required v-model="employeeData.objectifs">
         </div>
         <div class="form-group">
-            <label>Adresse</label>
-          <input type="text" class="form-control" required v-model="employeeData.adresse">
+            <label>ville</label>
+          <input type="text" class="form-control" required v-model="employeeData.ville">
         </div>
         <div class="form-group">
-            <label>Url</label>
-          <input type="text" class="form-control" required v-model="employeeData.url">
+            <label>nbHeure</label>
+          <input type="text" class="form-control" required v-model="employeeData.nbHeure">
         </div>
+        <div class="form-group">
+            <label>dateDebut</label>
+          <input type="date" class="form-control" required v-model="employeeData.dateDebut">
+        </div> 
+        <div class="form-group">
+            <label>dateFin</label>
+          <input type="date" class="form-control" required v-model="employeeData.dateFin">
+        </div>
+        <div class="form-group">
+            <label>budget</label>
+          <input type="text" class="form-control" required v-model="employeeData.budget">
+        </div>
+        <div class="form-group">
+            <label>categorieFormationId</label>
+            <select id="categorieId" v-model="employeeData.categorieFormationId" required>
+          <option v-for="category in categories" :key="category.idCat" :value="category.idCat">
+            {{ category.nomCat }}
+          </option>
+        </select>
+        </div> 
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" @click="cancelAddEmployee" data-dismiss="modal">Cancel</button>
@@ -241,32 +269,52 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-            <h5 class="modal-title">Modifier Entreprise</h5>
+            <h5 class="modal-title">Modifier Formation</h5>
             <button type="button" class="close" @click="cancelEditedEmployee" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
             <div class="form-group">
-            <label>Nom</label>
-          <input type="text" class="form-control" required v-model="editEmployeeData.nom">
+            <label>titre</label>
+          <input type="text" class="form-control" required v-model="editEmployeeData.titre">
         </div>
         <div class="form-group">
-            <label>Email</label>
-          <input type="email" class="form-control" required v-model="editEmployeeData.email">
+            <label>description</label>
+          <input type="text" class="form-control" required v-model="editEmployeeData.description">
         </div>
         <div class="form-group">
-            <label>Numéro Téléphone</label>
-          <input type="text" class="form-control" required v-model="editEmployeeData.numeroTel">
+            <label>objectifs</label>
+          <input type="text" class="form-control" required v-model="editEmployeeData.objectifs">
         </div>
         <div class="form-group">
-            <label>Adresse</label>
-          <input type="text" class="form-control" required v-model="editEmployeeData.adresse">
+            <label>ville</label>
+          <input type="text" class="form-control" required v-model="editEmployeeData.ville">
         </div>
         <div class="form-group">
-            <label>Url</label>
-          <input type="text" class="form-control" required v-model="editEmployeeData.url">
+            <label>nbHeure</label>
+          <input type="text" class="form-control" required v-model="editEmployeeData.nbHeure">
         </div>
+        <div class="form-group">
+            <label>dateDebut</label>
+          <input type="date" class="form-control" required v-model="editEmployeeData.dateDebut">
+        </div> 
+        <div class="form-group">
+            <label>dateFin</label>
+          <input type="date" class="form-control" required v-model="editEmployeeData.dateFin">
+        </div>
+        <div class="form-group">
+            <label>budget</label>
+          <input type="text" class="form-control" required v-model="editEmployeeData.budget">
+        </div>
+        <div class="form-group">
+            <label>categorieFormationId</label>
+            <select id="categorieId" v-model="editEmployeeData.categorieFormationId" required>
+          <option v-for="category in categories" :key="category.idCat" :value="category.idCat">
+            {{ category.nomCat }}
+          </option>
+        </select>
+        </div> 
           </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" @click="cancelEditedEmployee" data-dismiss="modal">Cancel</button>
@@ -285,7 +333,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Supprimer Entreprise</h5>
+            <h5 class="modal-title">Supprimer Formation</h5>
             <button type="button" class="close"  @click="cancelDeletedEmployee" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -296,7 +344,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" @click="cancelDeletedEmployee" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-success"   @click="MethoddeleteEmployee(idDeleteEmployee)" >Save</button>
+            <button type="button" class="btn btn-success"   @click="MethoddeleteEmployee(idDeleteEmployee)">Save</button>
           </div>
         </div>
       </div>
@@ -329,20 +377,29 @@
         return {
           idDeleteEmployee:'',
           employees: [],
+          categories: [],
           employeeData: {
-            nom: '',
-            email: '',
-            numeroTel: '',
-            adresse: '',
-            url: '',
+        titre: "",
+        description: "",
+        objectifs: "",
+        ville: "",
+        nbHeure: null,
+        dateDebut: "",
+        dateFin: "",
+        budget: "",
+        categorieFormationId: null,
   
           },
           editEmployeeData: {
-            nom: '',
-            email: '',
-            numeroTel: '',
-            adresse: '',
-            url: '',
+        titre: "",
+        description: "",
+        objectifs: "",
+        ville: "",
+        nbHeure: null,
+        dateDebut: "",
+        dateFin: "",
+        budget: "",
+        categorieFormationId: null,
           },
           editedEmployeeIndex: null,
         };
@@ -350,6 +407,13 @@
   
       },
       mounted() {
+      axios.get(`http://localhost:8080/categorie/all`)
+      .then(response => {
+        this.categories = response.data;
+      })
+      .catch(error => {
+        console.error(error);
+      });
         $(".xp-menubar").on('click', function () {
           $("#sidebar").toggleClass('active');
           $("#content").toggleClass('active');
@@ -373,7 +437,7 @@
   
       methods: {
       getEmployees() {
-        fetch(`http://localhost:8080/entreprise/all`)
+        fetch(`http://localhost:8080/formation/all`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -381,7 +445,7 @@
                     return response.json();
                 })
                 .then(data => {
-                    // Set the entreprises data property with the fetched data
+                    // Set the formations data property with the fetched data
                     this.employees = data;
                 })
                 .catch(error => {
@@ -391,65 +455,72 @@
   
   
       MethodaddEmployee() {
-        fetch('http://localhost:8080/entreprise/save', {
-                  method: 'POST',
-                  headers: {
-                      'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify(this.employeeData)
-              })
-              .then(response => response.json())
-              .then(data => {
-                  console.log(data);
-                  this.getEmployees();
-              })
-              .catch(error => {
-                  console.error('Error adding entreprise:', error);
-              });
-          $('#addEmployeeModal').modal('hide');
-        },
+        axios.post(`http://localhost:8080/formation/save/${this.employeeData.categorieFormationId}`, this.employeeData)
+        .then(response => {
+          console.log(response.data);
+          this.employeeData = {
+            titre: "",
+            description: "",
+            objectifs: "",
+            ville: "",
+            nbHeure: null,
+            dateDebut: "",
+            dateFin: "",
+            budget: "",
+            categorieFormationId: null,
+          };
+          this.getEmployees();
+        })
+      .catch(error => {
+        // Handle the error
+        console.error('Error saving student:', error);
+        // Optionally, you can show an error message to the user
+        alert('Error saving formateur. Please try again.');
+      });
+        $('#addEmployeeModal').modal('hide');
+      },
   
-        MethoddeleteEmployee(id) {
-            fetch(`http://localhost:8080/entreprise/delete/${id}`, {
+        MethoddeleteEmployee() {
+          fetch(`http://localhost:8080/formation/delete/${this.idDeleteEmployee}`, {
                 method: 'DELETE'
             })
                 .then(data => {
                     console.log(data);
-                    // After deleting, fetch and update the entreprise list
+                    // After deleting, fetch and update the formation list
                     window.location.reload();
                     this.getEmployees();
-                    $('#deleteEmployeeModal').modal('hide');
-
-                })
-                .catch(error => {
-                    console.error('Error deleting entreprise:', error);
-                });
+          $('#deleteEmployeeModal').modal('hide');
+      })
+      .catch(error => {
+          console.error('Error deleting assistant:', error);
+      });
   },
    
   
-      MethodeditEmployee() {
-        fetch(`http://localhost:8080/entreprise/modif/${this.editEmployeeData.id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(this.editEmployeeData) // Send this.entreprise, not this.patient
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Update failed'); // Handle non-200 status codes
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log(data);
-    this.getEmployees();
-
-  })
-  .catch(error => {
-    console.error('Error updating entreprise:', error);
-    // Handle the error appropriately, e.g., display an error message to the user
-  });
+      MethodeditEmployee(id) {
+        fetch(`http://localhost:8080/formation/modif/${this.editEmployeeData.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.editEmployeeData), // Update to send this.formation
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Update failed'); // Handle non-200 status codes
+          }
+          return response.json();
+        })
+    .then(data => {
+      console.log(data);
+      this.getEmployees();
+             // Show the edit modal
+             $('#editEmployeeModal').modal('hide'); 
+    })
+    .catch(error => {
+      console.error('Error updating assistant:', error);
+      // Handle the error appropriately, e.g., display an error message to the user
+    });
           // Show the edit modal
           $('#editEmployeeModal').modal('hide');
         },
