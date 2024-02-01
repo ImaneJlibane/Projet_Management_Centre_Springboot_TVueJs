@@ -1,12 +1,9 @@
 <template>
   <div>
-     <div>
-  
-
-  </div>
+    <h1>Formations</h1>
     <div class="filters">
       <div>
-        <label for="categoryFilter">Filter by Category:&nbsp;</label>
+        <label for="categoryFilter">Filter by Category:</label>
         <select v-model="selectedCategory">
           <option value="">All</option>
           <option v-for="category in categories" :value="category.idCat">{{ category.nomCat }}</option>
@@ -14,35 +11,30 @@
       </div>
 
       <div>
-        <label for="dateFilter">Filter by Date:&nbsp;</label>
+        <label for="dateFilter">Filter by Date:</label>
         <input type="date" v-model="selectedDate" />
       </div>
 
       <div>
-        <label for="cityFilter">Filter by City:&nbsp;</label>
-        <select v-model="selectedCity">
-          <option value="">All</option>
-          <option v-for="city in uniqueCities" :value="city">{{ city }}</option>
-        </select>
+        <label for="cityFilter">Filter by City:</label>
+        <input type="text" v-model="selectedCity" />
       </div>
       
-      <button style='  margin-top:-10px; '@click="filterFormations">Search</button>
+      <button @click="filterFormations">Search</button>
     </div>
 
     <div class="formation-container">
       <div v-if="formations.length === 0">Loading...</div>
 
       <div v-else class="formation-box" v-for="formation in filteredFormations" :key="formation.id">
-        <img src="@/assets/Group 3.png" alt="Formation Image" class="formation-image" />
+        <img src="@/assets/lg.png" alt="Formation Image" class="formation-image" />
         <div class="formation-info">
           <h2>{{ formation.titre }}</h2>
-          <p>{{ formatDate(formation.dateDebut) }}</p>
-          <p>Prix: {{ formation.bugdet }} DH</p>
-          <p>Nbr d’heures: {{ formation.nbHeure }}</p>
-          <div class="button-container">
-            <button @click="inscrire(formation)">Inscrire</button>
-            <button @click="redirectToProgramme(formation.id)">Details</button>
-          </div>
+          <p>{{ formation.dateDebut }}</p>
+          <p>Price: {{ formation.bugdet }}</p>
+          <p>Number of Hours: {{ formation.nbHeure }}</p>
+         <button @click="inscrire(formation)">Inscrire</button>
+          <button @click="redirectToProgramme(formation.id)">Details</button>
         </div>
       </div>
     </div>
@@ -60,8 +52,7 @@ export default {
       categories: [],
       selectedCategory: '',
       selectedDate: '',
-      selectedCity: '',
-      uniqueCities: [] // Holds unique cities extracted from formations
+      selectedCity: ''
     };
   },
   created() {
@@ -74,7 +65,6 @@ export default {
         .then(response => {
           this.formations = response.data;
           this.filteredFormations = this.formations;
-          this.extractUniqueCities(); // Extract unique cities after fetching formations
         })
         .catch(error => {
           console.error('Error fetching formations:', error);
@@ -89,20 +79,10 @@ export default {
           console.error('Error fetching categories:', error);
         });
     },
-    extractUniqueCities() {
- 
-      const cities = new Set();
-      this.formations.forEach(formation => {
-        if (formation.ville) {
-          cities.add(formation.ville);
-        }
-      });
-      this.uniqueCities = Array.from(cities);
-    },
     filterFormations() {
       this.filteredFormations = this.formations.filter(formation => {
         const categoryFilter = !this.selectedCategory || !formation.categorieFormation || formation.categorieFormation.idCat == this.selectedCategory;
-        const cityFilter = !this.selectedCity || formation.ville === this.selectedCity;
+        const cityFilter = !this.selectedCity || !formation.ville || formation.ville.toLowerCase().includes(this.selectedCity.toLowerCase());
         let dateFilter = true;
 
         if (this.selectedDate) {
@@ -117,13 +97,10 @@ export default {
     inscrire(formation) {
       this.$router.push({ name: 'Etudiant', query: { formationTitle: formation.titre } });
     },
-    redirectToProgramme(formationId) {
-      this.$router.push({ name: 'Programmme', params: { formationId: formationId } });
-    },
-    formatDate(dateString) {
-      const date = new Date(dateString);
-      return `${date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
-    }
+  redirectToProgramme(formationId) {
+    // Redirect to the Programme page with the formation ID as a parameter
+    this.$router.push({ name: 'Programmme', params: { formationId: formationId } });
+}
   }
 };
 </script>
@@ -133,32 +110,24 @@ export default {
   display: flex;
   justify-content: space-evenly;
   margin-bottom: 20px; 
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .formation-container {
   display: flex;
   flex-wrap: wrap;
-  margin-left: 45px;
-  margin-top:40px;
+  margin-left: 40px;
 }
 
 .formation-image {
-  width: 100%;
-  height: 170px;
-  margin-left: 7px;
-  margin-top: 10px;
+  width: 50%;
+  height: 110px;
   object-fit: cover;
+  margin-bottom: 10px;
 }
 
 h1 {
   margin-top: 20px;
-  color: #5519D2;
-}
-
-.formation-info {
-  width: 100%;
-  text-align: center;
 }
 
 .formation-info h2 {
@@ -169,11 +138,6 @@ h1 {
   margin: 5px 0;
 }
 
-.button-container {
-  display: flex;
-  justify-content: center;
-}
-
 button {
   padding: 5px 10px;
   background-color: #5519D2;
@@ -181,11 +145,12 @@ button {
   border: none;
   cursor: pointer;
   border-radius: 20px;
-  margin: 5px;
+  margin-left: 70px;
+  margin-top: -5px;
 }
 
 button:hover {
-  background-color:#FBAC14 ;
+  background-color: #004080;
 }
 
 .formation-box {
@@ -198,5 +163,17 @@ button:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-</style>
+.formation-info button {
+  padding: 5px 10px;
+  background-color: #FBAC14;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+  margin-right: 60px;
+}
 
+.formation-info button:hover {
+  background-color: #004080;
+}
+</style>

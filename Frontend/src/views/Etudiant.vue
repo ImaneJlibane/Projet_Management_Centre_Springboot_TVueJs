@@ -1,4 +1,4 @@
- <template>
+<template>
   <div class="container">
     <div class="row">
       <!-- Left side with registration form -->
