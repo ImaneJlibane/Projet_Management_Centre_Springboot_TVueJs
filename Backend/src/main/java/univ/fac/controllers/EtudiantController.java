@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import univ.fac.enities.Etudiant;
 import univ.fac.repostries.EtudiantRepository;
+import univ.fac.services.EtudiantService;
 @CrossOrigin(origins = "http://localhost:8081/")
 //EtudiantController.java
 @RestController
@@ -20,6 +21,17 @@ public class EtudiantController {
 
  @Autowired
  private EtudiantRepository etudiantRepository;
+ private final EtudiantService etudiantService1;
+ 
+ public EtudiantController(EtudiantService etudiantService) {
+     this.etudiantService1 = etudiantService;
+ }
+
+ @GetMapping("/orderedByFormation")
+ public List<Etudiant> getAllEtudiantsOrderedByFormation() {
+     return etudiantService1.getAllEtudiantsOrderByFormation();
+ }
+
  
  @GetMapping("/welcome")
 
