@@ -61,7 +61,20 @@ public class Formation {
 	              '}';
 	  }
 
-	  
+	
+
+	public Formation(Date dateFin) {
+        this.dateFin = dateFin;
+        // Initialize other parameters
+    }
+
+    public Date getDateFin() {
+        return dateFin;
+    }
+
+    public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
+    }	  
 
 }
 

@@ -49,5 +49,11 @@ public class PlanifierFormationController {
     public PlanifierFormation findById(@PathVariable long id) {
         return planifierFormationService.findById(id);
     }
+    
+    @GetMapping("/callVerifierMethod")
+    public ResponseEntity<String> callVerifierMethod() {
+        planifierFormationService.verifierFinFormationEtEnvoyerFormulaire();
+        return ResponseEntity.ok("Method called successfully!");
+    }
 }
 

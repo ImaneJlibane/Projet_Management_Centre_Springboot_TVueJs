@@ -74,6 +74,8 @@ public class PlanifierFormation {
         this.formation = formation;
     }
 
-
+    public Date getDateFin() {
+        return this.formation.getDateFin();
+    }
     
 }
