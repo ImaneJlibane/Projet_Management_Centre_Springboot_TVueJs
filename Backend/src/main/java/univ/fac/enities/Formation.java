@@ -2,6 +2,7 @@ package univ.fac.enities;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,7 +36,7 @@ public class Formation {
 	  @ManyToOne
 	  private Categorie categorieFormation;
 	  @ManyToMany
-	  private List<Etudiant> usersList;
+	  private List<GroupEtudiant> usersList;
 	  @ManyToOne
 	  private Formateur formateur;
 	  @ManyToMany
@@ -74,7 +75,12 @@ public class Formation {
 
     public void setDateFin(Date dateFin) {
         this.dateFin = dateFin;
-    }	  
-
+    }
+    
+    public List<Etudiant> getEtudiantList() {
+        return usersList.stream()
+                .map(GroupEtudiant::getEtudiant)
+                .collect(Collectors.toList());
+    }
 }
 

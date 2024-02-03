@@ -8,6 +8,7 @@ import GererEntreprise_F from "../views/AdminDhasboard/GererEntreprise_F.vue";
 import GererFormateur_F from "../views/AdminDhasboard/GererFormateur_F.vue";
 import GererFormation_F from "../views/AdminDhasboard/GererFormation_F.vue";
 import PlannificationEntreprise_F from "../views/AdminDhasboard/PlannificationEntreprise_F.vue";
+import Feedback_F from "../views/AdminDhasboard/Feedback_F.vue";
 import PlannificationEntreprise_A from "../views/AssistantDashboard/PlannificationEntreprise_A.vue";
 
 
@@ -29,11 +30,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Courses.vue')
   },
-  {
-    path: '/Espaceformateur',
-    name: 'Espaceformateur',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Espaceformateur.vue')
-  },
+
   {
     path: '/Login',
     name: 'Login',
@@ -101,7 +98,11 @@ const routes = [
     component: GererFormation_F,
   },
 
-  
+  {
+    path: '/Feedback_F',
+    name: "Feedback_F",
+    component: Feedback_F,
+  },
 ]
 
 const router = createRouter({

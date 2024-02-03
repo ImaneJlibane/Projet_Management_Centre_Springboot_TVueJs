@@ -14,6 +14,7 @@ import java.io.File;
 import java.sql.Date;
 
 import univ.fac.enities.Entreprise;
+import univ.fac.enities.Etudiant;
 import univ.fac.enities.Formation;
 import univ.fac.enities.PlanifierFormation;
 import univ.fac.response.MessageResponse;
@@ -99,9 +100,9 @@ public class PlanifierFormationService {
 
     private void envoyerFormulaireFeedback(PlanifierFormation planification) {
         Formation formation = planification.getFormation();
-     	 System.out.println("formation : " + formation);
         List<Entreprise> entreprises = formation.getEntrelist();
-    	 System.out.println("entreprise : " + entreprises);
+        List<Etudiant> etudiants = formation.getEtudiantList();
+
 
         String lienFormulaire = generateLienFormulaire();
 
@@ -116,6 +117,18 @@ public class PlanifierFormationService {
 
             envoyerEmail(entreprise.getEmail(), sujetEntreprise, contenuEntreprise);
         }
+        
+        for (Etudiant etudiant : etudiants) {
+       	 System.out.println("Entreprise ID: " + etudiant.getId());
+            System.out.println("Entreprise email: " + etudiant.getEmail());
+           String sujetEntreprise = "Formulaire de Feedback pour la formation";
+           String contenuEntreprise = "Bonjour " + etudiant.getNom() + ",\n\n" +
+                                       "Merci de remplir le formulaire de feedback pour la formation.\n" +
+                                       "Cliquez sur le lien suivant pour accéder au formulaire: " + lienFormulaire + "\n\n" +
+                                       "Cordialement,\nVotre équipe de formation";
+
+           envoyerEmail(etudiant.getEmail(), sujetEntreprise, contenuEntreprise);
+       }
     }
     
     private void envoyerEmail(String destinataire, String sujet, String contenu) {
