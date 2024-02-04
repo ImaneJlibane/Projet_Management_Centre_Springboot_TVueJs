@@ -10,6 +10,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import jakarta.transaction.Transactional;
+
 import java.io.File;
 import java.sql.Date;
 
@@ -79,16 +81,15 @@ public class PlanifierFormationService {
     
     
     
-    
+    @Transactional
     @Scheduled(cron = "0 0 0 * * *") 
     public void verifierFinFormationEtEnvoyerFormulaire() {
         List<PlanifierFormation> planifications = planifierFormationRepository.findAll();
 
         for (PlanifierFormation planification : planifications) {
-          	 System.out.println("date : " + planification.getDateFin());
-            if (planification.getDateFin().after(new Date(0))) {
+          	java.sql.Date currentDate = new java.sql.Date(System.currentTimeMillis());
+          	if (planification.getDateFin().before(currentDate)) {
                 try {
-               	 System.out.println("date 2: " + planification.getDateFin());
                     envoyerFormulaireFeedback(planification);
                 } catch (Exception e) {
                     

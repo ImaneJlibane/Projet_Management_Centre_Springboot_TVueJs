@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import jakarta.annotation.PostConstruct;
 import univ.fac.enities.PlanifierFormation;
 import univ.fac.services.PlanifierFormationService;
 import univ.fac.response.MessageResponse;
@@ -54,6 +56,11 @@ public class PlanifierFormationController {
     public ResponseEntity<String> callVerifierMethod() {
         planifierFormationService.verifierFinFormationEtEnvoyerFormulaire();
         return ResponseEntity.ok("Method called successfully!");
+    }
+    
+    @PostConstruct
+    public void onApplicationStart() {
+        planifierFormationService.verifierFinFormationEtEnvoyerFormulaire();
     }
 }
 
