@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,6 +28,9 @@ public DaoAuthenticationProvider daoAuthenticationProvider() {
 	DaoAuthenticationProvider dap=new DaoAuthenticationProvider();
 	dap.setUserDetailsService((UserDetailsService) userService);
 	dap.setPasswordEncoder(encoder());
+	dap.setPostAuthenticationChecks((UserDetails userDetails) -> {
+	        System.out.println("User authorities: " + userDetails.getAuthorities());
+	    });
 	return dap;
 }
 
@@ -41,6 +45,7 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
             	.requestMatchers("/entreprise/**").permitAll()
             	.requestMatchers("/assistant/**").permitAll()
             	.requestMatchers("/planifierFormation/**").permitAll()
+            	.requestMatchers("/api/groups/**").permitAll()
             	.requestMatchers("/api/etudiants/**").permitAll()
             	.requestMatchers("/api/etudiants/**").permitAll()
             	.requestMatchers("/api/feedback/**").permitAll()

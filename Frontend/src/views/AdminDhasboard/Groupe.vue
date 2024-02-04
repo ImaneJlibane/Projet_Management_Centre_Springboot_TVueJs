@@ -26,27 +26,27 @@
           </li>
   
           <li class="">
-            <a href="GererFormation_F" class="">
-                <i class="material-icons">grid_on</i>Gérer Formation
-            </a>
-        </li>
+              <a href="GererFormation_F" class="">
+                  <i class="material-icons">grid_on</i>Gérer Formation
+              </a>
+          </li>
 
-        <li class="">
+          <li class="active">
             <a href="Groupe" class="">
                 <i class="material-icons">grid_on</i>Affectation Groupe
             </a>
         </li>
-        
-        <li class="active">
+
+          <li class="">
             <a href="Feedback_F" class="">
                 <i class="material-icons">grid_on</i>Formation FeedBack
             </a>
         </li>
 
-        <li class="">
-            <a href="PlannificationEntreprise_F" class=""><i class="material-icons">date_range</i>Plannification</a>
-        </li>
-
+          <li class="">
+              <a href="PlannificationEntreprise_F" class=""><i class="material-icons">date_range</i>Plannification</a>
+          </li>
+  
   
           <li class="">
               <a href="Login" class=""><i class="material-icons">logout</i>Logout </a>
@@ -126,7 +126,7 @@
                  <div class="table-title">
                    <div class="row">
                      <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
-                      <h2 class="ml-lg-2">Formation FeedBack</h2>
+                      <h2 class="ml-lg-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gérer  Formation</h2>
                    </div>
                    </div>
                  </div>
@@ -140,12 +140,13 @@
                   <label for="selectAll"></label>
                 </span>
               </th>
-            <th>pedagogicalQualityRating</th>
-            <th>rhythmRating</th>
-            <th>courseSupportRating</th>
-            <th>subjectMasteryRating</th>
-            <th>formateur</th>
-            <th>formation</th>
+          <th>Email</th>
+          <th>Name</th>
+          <th>City</th>
+          <th>Phone Number</th>
+          <th>Date of Birth</th>
+          <th>Formation</th>
+         <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -156,12 +157,17 @@
                   <label :for="'checkbox' + (index + 1)"></label>
                 </span>
               </td>
-            <td>{{ employee.pedagogicalQualityRating }}</td>
-            <td>{{ employee.rhythmRating }}</td>
-            <td>{{ employee.courseSupportRating }}</td>
-            <td>{{ employee.subjectMasteryRating }}</td>
-            <td>{{ employee.formateur }}</td>
+            <td>{{ employee.nom }} {{ employee.prenom }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.ville }}</td>
+            <td>{{ employee.numeroTel }}</td>
+            <td>{{ employee.dateNaissance }}</td>
             <td>{{ employee.formation }}</td>
+              <td>
+                <!-- Vue event handling for edit and delete actions -->
+                <button type="button" class="btn btn-success"   @click="editEmployee(index)" >Save</button>
+
+              </td>
             </tr>
           </tbody>
         </table>
@@ -183,13 +189,54 @@
                  </div>
               </div>
               
-            </div> </div>				 
+            </div> </div>				
+                        
+    
+                 <!----edit-modal end--------->
+                 
+                 
+                 
+                 
+                 
+               <!----edit-modal start--------->
+        <!-- Edit Employee Modal -->
+        <div class="modal fade" tabindex="-1" id="editEmployeeModal" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+            <h5 class="modal-title">Choisir Groupe</h5>
+            <button type="button" class="close" @click="cancelEditedEmployee" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+            <label>Nom Groupe</label>
+          <input type="text" class="form-control" required v-model="editEmployeeData.nom">
+        </div>
+        
+          </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" @click="cancelEditedEmployee" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success"   @click="MethodeditEmployee" >Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+                 <!----edit-modal end--------->	   
+                 
+                 
+
+    
+    
+                 <!----edit-modal end--------->   
                  
               
               
              
                </div>
-            </div>
           
             <!------main-content-end----------->
       </template>
@@ -209,6 +256,13 @@
       data() {
         return {
           employees: [],
+          editEmployeeData: {
+        id: "",
+        nom: "",
+        etudiant: "",
+        
+          },
+          editedEmployeeIndex: null,
         };
   
   
@@ -236,30 +290,53 @@
       },
   
       methods: {
-
       getEmployees() {
-        fetch(`http://localhost:8080/api/feedback/all`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // Set the entreprises data property with the fetched data
-                    this.employees = data;
-                })
-                .catch(error => {
-                    console.error('Error fetching or parsing data:', error);
-                });
+        axios.get('http://localhost:8080/api/etudiants/orderedByFormation')
+        .then(response => {
+          this.employees = response.data;
+        })
+        .catch(error => {
+          console.error('Error fetching students:', error);
+        });
           },
   
+   
   
-     
+      MethodeditEmployee(id) {
+        const newGroup = { nom: this.editEmployeeData.nom };
+        axios.post('http://localhost:8080/api/groups/Add', this.newGroup)
+      .then(response => {
+        // Handle the success response
+        console.log('Formateur saved successfully:', response.data);
+        // Optionally, you can show a success message to the user
+      }).then(data => {
+                  console.log(data);
+                  this.getEmployees();
+              })
+      .catch(error => {
+        // Handle the error
+        console.error('Error saving student:', error);
+        // Optionally, you can show an error message to the user
+        alert('Error saving formateur. Please try again.');
+      });
+          // Show the edit modal
+          $('#editEmployeeModal').modal('hide');
+        },
   
   
   
-
+      editEmployee(index) {
+          this.editedEmployeeIndex = index;
+          this.editEmployeeData = { ...this.employees[10] };
+    
+          // Show the edit modal
+          $('#editEmployeeModal').modal('show');
+        },
+      cancelEditedEmployee() {
+        // Close the edit modal
+        $('#editEmployeeModal').modal('hide');
+      },
+      
       },
     };
     </script>

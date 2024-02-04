@@ -30,6 +30,12 @@
                   <i class="material-icons">grid_on</i>Gérer Formation
               </a>
           </li>
+
+          <li class="">
+            <a href="Groupe" class="">
+                <i class="material-icons">grid_on</i>Affectation Groupe
+            </a>
+        </li>
   
           <li class="">
             <a href="Feedback_F" class="">

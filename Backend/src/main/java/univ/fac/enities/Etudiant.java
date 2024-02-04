@@ -34,6 +34,8 @@ public class Etudiant {
 	  @JsonIgnore
 
 	  private List<Evaluation> evaluationList;
+
+	
 	  
 
 }

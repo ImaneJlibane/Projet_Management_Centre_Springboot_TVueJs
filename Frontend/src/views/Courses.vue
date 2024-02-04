@@ -26,7 +26,7 @@
         </select>
       </div>
       
-      <button style='  margin-top:-10px; '@click="filterFormations">Search</button>
+      <button style="margin-top:-10px;" @click="filterFormations">Search</button>
     </div>
 
     <div class="formation-container">

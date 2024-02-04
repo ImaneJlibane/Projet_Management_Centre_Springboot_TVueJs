@@ -7,6 +7,7 @@ import Programmme from "../views/Programmme.vue";
 import GererEntreprise_F from "../views/AdminDhasboard/GererEntreprise_F.vue";
 import GererFormateur_F from "../views/AdminDhasboard/GererFormateur_F.vue";
 import GererFormation_F from "../views/AdminDhasboard/GererFormation_F.vue";
+import Groupe from "../views/AdminDhasboard/Groupe.vue";
 import PlannificationEntreprise_F from "../views/AdminDhasboard/PlannificationEntreprise_F.vue";
 import Feedback_F from "../views/AdminDhasboard/Feedback_F.vue";
 import Feedback_A from "../views/AssistantDashboard/Feedback_A.vue";
@@ -110,6 +111,13 @@ const routes = [
     name: "Feedback_A",
     component: Feedback_A,
   },
+
+  {
+    path: '/Groupe',
+    name: "Groupe",
+    component: Groupe,
+  },
+
   {
     path: '/Espaceformateur',
     name: 'Espaceformateur',

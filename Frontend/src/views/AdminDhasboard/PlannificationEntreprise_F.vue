@@ -31,6 +31,12 @@
               </a>
           </li>
   
+        <li class="">
+            <a href="Groupe" class="">
+                <i class="material-icons">grid_on</i>Affectation Groupe
+            </a>
+        </li>
+
           <li class="">
             <a href="Feedback_F" class="">
                 <i class="material-icons">grid_on</i>Formation FeedBack
