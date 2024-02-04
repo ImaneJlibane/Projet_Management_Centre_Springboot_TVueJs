@@ -32,12 +32,15 @@
         </li>
 
         <li class="">
-            <a href="PlannificationEntreprise_F" class=""><i class="material-icons">date_range</i>Formation d'entreprise</a>
+            <a href="Feedback_F" class="">
+                <i class="material-icons">grid_on</i>Formation FeedBack
+            </a>
         </li>
 
         <li class="">
-            <a href="" class=""><i class="material-icons">date_range</i>Formation d'Etudiant</a>
+            <a href="PlannificationEntreprise_F" class=""><i class="material-icons">date_range</i>Plannification</a>
         </li>
+
   
           <li class="">
               <a href="Login" class=""><i class="material-icons">logout</i>Logout </a>

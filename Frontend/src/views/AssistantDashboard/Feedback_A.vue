@@ -4,49 +4,36 @@
          <div class="body-overlay"></div>	 
        <!-------sidebar--design------------>
   
-  <div id="sidebar">
-      <div class="sidebar-header">
+       <div id="sidebar">
+    <div class="sidebar-header">
         <h3><img src="@/assets/StyleDashboard/img/logo.png" class="img-fluid" style="margin-bottom: 9px;"/><span style="color: black;">C</span>oding<span style="color: black;">G</span>uide</h3>
-      </div>
-      <ul class="list-unstyled component m-0 text-start">
-          <li class="">
-              <a href="AdminDashboard" class="dashboard"><i class="material-icons">dashboard</i>Gérer Assistant </a>
-          </li>
-  
-          <li class="">
-              <a href="GererFormateur_F" class="">
-                  <i class="material-icons">extension</i>Gérer Formateur
-              </a>
-          </li>
-  
-          <li class="">
-              <a href="GererEntreprise_F" class="">
-                  <i class="material-icons">border_color</i>Gérer Entreprise
-              </a>
-          </li>
-  
-          <li class="">
-            <a href="GererFormation_F" class="">
-                <i class="material-icons">grid_on</i>Gérer Formation
+    </div>
+    <ul class="list-unstyled component m-0 text-start">
+
+
+        <li class="">
+            <a href="AssistantDashboard" class="">
+                <i class="material-icons">border_color</i>Gérer Entreprise
             </a>
         </li>
 
         <li class="active">
-            <a href="Feedback_F" class="">
-                <i class="material-icons">grid_on</i>Formation FeedBack
+            <a href="Feedback_A" class="">
+                <i class="material-icons">border_color</i>Formation Feedback
             </a>
         </li>
 
-        <li class="">
-            <a href="PlannificationEntreprise_F" class=""><i class="material-icons">date_range</i>Plannification</a>
-        </li>
+      <li class="">
+          <a href="PlannificationEntreprise_A" class=""><i class="material-icons">date_range</i>Plannification</a>
+      </li>
 
-  
-          <li class="">
-              <a href="Login" class=""><i class="material-icons">logout</i>Logout </a>
-          </li>
-      </ul>
-  </div>
+
+        <li class="">
+            <a href="Login" class=""><i class="material-icons">logout</i>Logout </a>
+        </li>
+    </ul>
+</div>
+
   
   <!-------sidebar--design- close----------->
   

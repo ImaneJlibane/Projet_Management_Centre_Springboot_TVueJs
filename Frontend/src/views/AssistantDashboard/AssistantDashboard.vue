@@ -12,19 +12,21 @@
 
 
         <li class="active">
-            <a href="GererEntreprise_A" class="">
+            <a href="AssistantDashboard" class="">
                 <i class="material-icons">border_color</i>Gérer Entreprise
             </a>
         </li>
 
+        <li class="">
+            <a href="Feedback_A" class="">
+                <i class="material-icons">border_color</i>Formation Feedback
+            </a>
+        </li>
 
       <li class="">
-          <a href="PlannificationEntreprise_A" class=""><i class="material-icons">date_range</i>Formation d'entreprise</a>
+          <a href="PlannificationEntreprise_A" class=""><i class="material-icons">date_range</i>Plannification</a>
       </li>
 
-      <li class="">
-          <a href="" class=""><i class="material-icons">date_range</i>Formation d'Etudiant</a>
-      </li>
 
         <li class="">
             <a href="Login" class=""><i class="material-icons">logout</i>Logout </a>

@@ -31,13 +31,16 @@
               </a>
           </li>
   
-          <li class="active">
-              <a href="PlannificationEntreprise_F" class=""><i class="material-icons">date_range</i>Formation d'entreprise</a>
-          </li>
-  
           <li class="">
-              <a href="" class=""><i class="material-icons">date_range</i>Formation d'Etudiant</a>
+            <a href="Feedback_F" class="">
+                <i class="material-icons">grid_on</i>Formation FeedBack
+            </a>
           </li>
+
+          <li class="active">
+              <a href="PlannificationEntreprise_F" class=""><i class="material-icons">date_range</i>Plannification</a>
+          </li>
+
   
           <li class="">
               <a href="Login" class=""><i class="material-icons">logout</i>Logout </a>
@@ -152,6 +155,7 @@
     </style>
     
     <script>
+      import axios from 'axios';  
     import {DayPilot, DayPilotCalendar, DayPilotNavigator} from '@daypilot/daypilot-lite-vue'
     export default {
         name: 'Calendar',
@@ -174,19 +178,60 @@
           durationBarVisible: false,
           timeRangeSelectedHandling: "Enabled",
           onTimeRangeSelected: async (args) => {
-            const modal = await DayPilot.Modal.prompt("Create a new event:", "Event 1");
-            const dp = args.control;
-            dp.clearSelection();
-            if (modal.canceled) {
-              return;
-            }
-            dp.events.add({
-              start: args.start,
-              end: args.end,
-              id: DayPilot.guid(),
-              text: modal.result
-            });
-          },
+    const formateurs = await DayPilot.Modal.form([
+        { name: 'Formation', id: 'formation', prompt: 'Entrez la formation:', type: 'text' },
+        { name: 'formateur', id: 'formateur', prompt: 'Entrez le formateur :', type: 'text' },
+        { name: 'entreprise', id: 'entreprise', prompt: 'Entrez l\'entreprise :', type: 'text' },
+        { name: 'groupe', id: 'groupe', prompt: 'Entrez le groupe :', type: 'text' }
+
+    ]);
+
+    if (formateurs.canceled) {
+        return;
+    }
+
+    const dp = this.$refs.calendar.control;
+    dp.clearSelection();
+
+    const eventText = `${formateurs.result.formateur} - ${formateurs.result.formation} - ${formateurs.result.entreprise}`;
+    const eventId = DayPilot.guid();
+
+    // Prepare data to be sent to the backend
+    const eventData = {
+        id: eventId,
+        date: args.start,
+        dateFin: args.end,
+        formateur: formateurs.result.formateur,
+        formation: formateurs.result.formation,
+        entreprise: formateurs.result.entreprise,
+        groupe: formateurs.result.groupe,
+
+    };
+
+   // Send data to the backend using Axios with your instance
+axios.post('http://localhost:8080/planifierFormation/planifier', eventData)
+  .then(response => {
+    // Handle the success response
+    console.log('Formateur saved successfully:', response.data);
+    // Optionally, you can show a success message to the user
+  })
+  .catch(error => {
+    // Handle the error
+    console.error('Error saving plannidier:', error);
+    // Optionally, you can show an error message to the user
+  });
+
+
+    // Add the event to the calendar
+    dp.events.add({
+        start: args.start,
+        end: args.end,
+        id: eventId,
+        text: formateurs.result.formation,
+
+    });
+},
+   
           eventDeleteHandling: "Disabled",
           onEventMoved: () => {
             console.log("Event moved");

@@ -9,9 +9,12 @@ public class PlanifierFormation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
     @Temporal(TemporalType.DATE)
     private Date date;
+    
+    @Temporal(TemporalType.DATE)
+    private Date dateFin;    
 
     @ManyToOne
     private Formateur formateur;
