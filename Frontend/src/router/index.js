@@ -110,6 +110,16 @@ const routes = [
     name: "Feedback_A",
     component: Feedback_A,
   },
+  {
+    path: '/Espaceformateur',
+    name: 'Espaceformateur',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Espaceformateur.vue')
+  },
+  {
+    path: '/Feedback',
+    name: 'Feedback',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Feedback.vue')
+  },
 ]
 
 const router = createRouter({
