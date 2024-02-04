@@ -47,7 +47,7 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
             	.requestMatchers("/planifierFormation/**").permitAll()
             	.requestMatchers("/api/groups/**").permitAll()
             	.requestMatchers("/api/etudiants/**").permitAll()
-            	.requestMatchers("/api/etudiants/**").permitAll()
+            	.requestMatchers("/api/group/**").permitAll()
             	.requestMatchers("/api/feedback/**").permitAll()
             .anyRequest().authenticated()
         		).httpBasic(withDefaults());
