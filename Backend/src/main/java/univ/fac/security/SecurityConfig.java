@@ -39,16 +39,16 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http.csrf(csrf -> csrf.disable())
         .securityMatcher("/**")
         .authorizeHttpRequests((authz) -> authz
-                .requestMatchers("/formateur/**").permitAll()
-                .requestMatchers("/formation/**").permitAll()
-                .requestMatchers("/categorie/**").permitAll()
-            	.requestMatchers("/entreprise/**").permitAll()
-            	.requestMatchers("/assistant/**").permitAll()
-            	.requestMatchers("/planifierFormation/**").permitAll()
+                .requestMatchers("/formateur/**").hasRole("Admin")
+                .requestMatchers("/formation/**").hasRole("Admin")
+                .requestMatchers("/categorie/**").hasRole("Admin")
+            	.requestMatchers("/entreprise/**").hasAnyRole("Admin","Assistant")
+            	.requestMatchers("/assistant/**").hasRole("Admin")
+            	.requestMatchers("/planifierFormation/**").hasAnyRole("Admin","Assistant")
             
-            	.requestMatchers("/api/etudiants/**").permitAll()
-            	.requestMatchers("/api/group/**").permitAll()
-            	.requestMatchers("/api/feedback/**").permitAll()
+            	.requestMatchers("/api/etudiants/**").hasRole("Admin")
+            	.requestMatchers("/api/group/**").hasRole("Admin")
+            	.requestMatchers("/api/feedback/**").hasRole("Admin")
             .anyRequest().authenticated()
         		).httpBasic(withDefaults());
     return http.build();
