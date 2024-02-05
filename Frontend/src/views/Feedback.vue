@@ -152,4 +152,12 @@ export default {
 .form-group{
   margin-top:9px;
 }
+.btn-primary{
+margin-right:56px;
+border-radius:30px;
+width:150px;
+background-color:#FBAC14 ;
+border:none;
+height:40px;
+}
 </style>

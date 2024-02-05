@@ -109,6 +109,9 @@ export default {
 </script>
 
 <style scoped>
+.container{
+  margin-top:-7px;
+}
 .logo {
   max-width: 50px;
   height: auto;
@@ -129,6 +132,14 @@ img {
   margin-top:50px;}
   .row{
   margin-top:23px;
+}
+.btn-primary{
+margin-right:200px;
+border-radius:30px;
+width:150px;
+background-color:#FBAC14 ;
+border:none;
+height:40px;
 }
 
 </style>

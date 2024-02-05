@@ -47,7 +47,7 @@ export default {
       const formationId = this.$route.params.formationId;
       console.log('Formation ID:', formationId);
       // Adjust your API endpoint as needed
-      axios.get(`http://localhost:8081/formation/all/${formationId}`)
+      axios.get(`http://localhost:8080/formation/all/${formationId}`)
         .then(response => {
           this.formation = response.data;
         })
@@ -82,13 +82,13 @@ export default {
 }
 
 .right-image {
-margin-top:-2000px;
+margin-top:-1190px;
   margin-left:800px;
 width:500px;
 height:500px;
 }
 p{
 font-family:"Gill Sans", sans-serif;
-font-size:19px;
+font-size:px;
 }
 </style>

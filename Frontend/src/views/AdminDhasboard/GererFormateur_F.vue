@@ -1,8 +1,7 @@
 <template>
   <div class="wrapper">
        
-       <div class="body-overlay"></div>	 
-     <!-------sidebar--design------------>
+       <div class="body-overlay"></div>  
 
 <div id="sidebar">
     <div class="sidebar-header">
@@ -54,15 +53,10 @@
     </ul>
 </div>
 
-<!-------sidebar--design- close----------->
 
-     
-     
-        <!-------page-content start----------->
      
         <div id="content">
          
-        <!------top-navbar-start-----------> 
            
         <div class="top-navbar">
            <div class="xd-topbar">
@@ -92,7 +86,7 @@
              <div class="col-10 col-md-6 col-lg-8 order-1 order-md-3">
                  <div class="xp-profilebar text-right">
                   <nav class="navbar p-0">
-                   <ul class="nav navbar-nav flex-row ml-auto">					   
+                   <ul class="nav navbar-nav flex-row ml-auto">            
                    <li class="nav-item">
                      <a class="" href="#" data-toggle="">
                     <img src="@/assets/StyleDashboard/img/user.jpg" style="width:40px; border-radius:50%;"/>
@@ -115,8 +109,7 @@
            
          </div>
         </div>
-        <!------top-navbar-end----------->     
-               <!------main-content-start-----------> 
+
            
                <div class="main-content">
              <div class="row">
@@ -174,11 +167,10 @@
           <td>{{ employee.ville }}</td>
           <td>{{ employee.dateNaissance }}</td>
           <td>{{ employee.username }}</td>
-          <td>{{ employee.specialite }}</td>
-          <td>{{ employee.niveauScolaire }}</td>
+          <td>{{ employee.specailite }}</td>
+          <td>{{ employee.niveauScolair }}</td>
           <td>{{ employee.remarques }}</td>
             <td>
-              <!-- Vue event handling for edit and delete actions -->
               <a href="#" @click="editEmployee(index)" class="edit">
                 <i class="material-icons" data-toggle="tooltip" title="Edit" style="color:#FFC107;">&#xE254;</i>
               </a>
@@ -207,9 +199,9 @@
                </div>
             </div>
             
-          </div> </div>				
-                       <!----add-modal start--------->
-      <div class="modal fade" tabindex="-1" id="addEmployeeModal" role="dialog">
+          </div> </div>       
+
+          <div class="modal fade" tabindex="-1" id="addEmployeeModal" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -253,11 +245,11 @@
       </div>
       <div class="form-group">
           <label>Specialité</label>
-        <input type="text" class="form-control" required v-model="employeeData.specialite">
+        <input type="text" class="form-control" required v-model="employeeData.specailite">
       </div>
       <div class="form-group">
           <label>Niveau Scolaire</label>
-        <input type="text" class="form-control" required v-model="employeeData.niveauScolaire">
+        <input type="text" class="form-control" required v-model="employeeData.niveauScolair">
       </div> 
       <div class="form-group">
           <label>Remarques</label>
@@ -272,14 +264,7 @@
     </div>
   </div>
   
-               <!----edit-modal end--------->
-               
-               
-               
-               
-               
-             <!----edit-modal start--------->
-      <!-- Edit Employee Modal -->
+
       <div class="modal fade" tabindex="-1" id="editEmployeeModal" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -324,11 +309,11 @@
       </div>
       <div class="form-group">
           <label>Specialité</label>
-        <input type="text" class="form-control" required v-model="editEmployeeData.specialite">
+        <input type="text" class="form-control" required v-model="editEmployeeData.specailite">
       </div>
       <div class="form-group">
           <label>Niveau Scolaire</label>
-        <input type="text" class="form-control" required v-model="editEmployeeData.niveauScolaire">
+        <input type="text" class="form-control" required v-model="editEmployeeData.niveauScolair">
       </div> 
       <div class="form-group">
           <label>Remarques</label>
@@ -344,10 +329,7 @@
       </div>
     </div>
   
-               <!----edit-modal end--------->	   
-               
-               
-             <!----delete-modal start--------->
+
       <div class="modal fade" tabindex="-1" id="deleteEmployeeModal" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -369,7 +351,6 @@
     </div>
   
   
-               <!----edit-modal end--------->   
                
             
             
@@ -377,7 +358,6 @@
              </div>
           </div>
         
-          <!------main-content-end----------->
     </template>
    
    <style scoped>
@@ -405,8 +385,8 @@ import axios from 'axios';
           dateNaissance: '',
           username: '',
           password: '',
-          specialite: '',
-          niveauScolaire: '',
+          specailite: '',
+          niveauScolair: '',
           remarques: '',
 
         },
@@ -419,8 +399,8 @@ import axios from 'axios';
           dateNaissance: '',
           username: '',
           password: '',
-          specialite: '',
-          niveauScolaire: '',
+          specailite: '',
+          niveauScolair: '',
           remarques: '',
         },
         editedEmployeeIndex: null,
@@ -569,4 +549,3 @@ import axios from 'axios';
     },
   };
   </script>
-  

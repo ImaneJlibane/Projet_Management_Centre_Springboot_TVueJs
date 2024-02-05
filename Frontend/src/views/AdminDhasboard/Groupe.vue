@@ -1,8 +1,8 @@
 <template>
     <div class="wrapper">
          
-         <div class="body-overlay"></div>	 
-       <!-------sidebar--design------------>
+         <div class="body-overlay"></div>  
+      
   
   <div id="sidebar">
       <div class="sidebar-header">
@@ -54,15 +54,13 @@
       </ul>
   </div>
   
-  <!-------sidebar--design- close----------->
   
        
        
-          <!-------page-content start----------->
+       
        
           <div id="content">
-           
-          <!------top-navbar-start-----------> 
+       
              
           <div class="top-navbar">
              <div class="xd-topbar">
@@ -92,7 +90,7 @@
                <div class="col-10 col-md-6 col-lg-8 order-1 order-md-3">
                    <div class="xp-profilebar text-right">
                     <nav class="navbar p-0">
-                     <ul class="nav navbar-nav flex-row ml-auto">					   
+                     <ul class="nav navbar-nav flex-row ml-auto">            
                      <li class="nav-item">
                        <a class="" href="#" data-toggle="">
                       <img src="@/assets/StyleDashboard/img/user.jpg" style="width:40px; border-radius:50%;"/>
@@ -115,130 +113,70 @@
              
            </div>
           </div>
-          <!------top-navbar-end----------->     
-                 <!------main-content-start-----------> 
-             
-                 <div class="main-content">
-               <div class="row">
-                <div class="col-md-12">
-                 <div class="table-wrapper">
-                   
-                 <div class="table-title">
-                   <div class="row">
-                     <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
-                      <h2 class="ml-lg-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gérer  Formation</h2>
-                   </div>
-                   </div>
-                 </div>
+               
+           
+               <div class="main-content">
+             <div class="row">
+              <div class="col-md-12">
+               <div class="table-wrapper">
                  
-                 <table class="table table-striped table-hover">
-          <thead>
-            <tr>
-              <th>
-                <span class="custom-checkbox">
-                  <input type="checkbox" id="selectAll">
-                  <label for="selectAll"></label>
-                </span>
-              </th>
-          <th>Email</th>
-          <th>Name</th>
-          <th>City</th>
-          <th>Phone Number</th>
-          <th>Date of Birth</th>
-          <th>Formation</th>
-         <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(employee, index) in employees" :key="employee.id">
-              <td>
-                <span class="custom-checkbox">
-                  <input type="checkbox" :id="'checkbox' + (index + 1)" name="option[]" :value="index + 1">
-                  <label :for="'checkbox' + (index + 1)"></label>
-                </span>
-              </td>
-            <td>{{ employee.nom }} {{ employee.prenom }}</td>
-            <td>{{ employee.email }}</td>
-            <td>{{ employee.ville }}</td>
-            <td>{{ employee.numeroTel }}</td>
-            <td>{{ employee.dateNaissance }}</td>
-            <td>{{ employee.formation }}</td>
-              <td>
-                <!-- Vue event handling for edit and delete actions -->
-                <button type="button" class="btn btn-success"   @click="editEmployee(index)" >Save</button>
+                <div>
+   
+   
+   <input type="text" v-model="groupName" placeholder="Enter Group Name">
+   <button @click="saveToGroup">Save to Group</button>
+   <table>
+     <thead>
+       <tr>
+         <th>ID</th>
+         <th>Email</th>
+         <th>Name</th>
+         <th>City</th>
+         <th>Phone Number</th>
+         <th>Date of Birth</th>
+         <th>Formation</th>
+         <th>Select</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr v-for="student in students" :key="student.id">
+         <td>{{ student.id }}</td>
+         <td>{{ student.email }}</td>
+         <td>{{ student.nom }} {{ student.prenom }}</td>
+         <td>{{ student.ville }}</td>
+         <td>{{ student.numeroTel }}</td>
+         <td>{{ student.dateNaissance }}</td>
+         <td>{{ student.formation }}</td>
+         <td><input type="checkbox" v-model="selectedStudents" :value="student.id"></td>
+       </tr>
+     </tbody>
+   </table>
+ </div>
+               
+               
+               
 
-              </td>
-            </tr>
-          </tbody>
-        </table>
-                 
-                 <div class="clearfix">
-                   <div class="hint-text">showing <b>1</b> out of <b>25</b></div>
-                   <ul class="pagination">
-                    <li class="page-item disabled"><a href="#">Previous</a></li>
-                  <li class="page-item "><a href="#" class="page-link">1</a></li>
-                  <li class="page-item "><a href="#" class="page-link">2</a></li>
-                  <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                  <li class="page-item "><a href="#" class="page-link">4</a></li>
-                  <li class="page-item "><a href="#" class="page-link">5</a></li>
-                  <li class="page-item "><a href="#" class="page-link">Next</a></li>
-                 </ul>
-                 </div>
-                 
-                 
-                 </div>
-              </div>
-              
-            </div> </div>				
-                        
-    
-                 <!----edit-modal end--------->
-                 
-                 
-                 
-                 
-                 
-               <!----edit-modal start--------->
-        <!-- Edit Employee Modal -->
-        <div class="modal fade" tabindex="-1" id="editEmployeeModal" role="dialog">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-            <h5 class="modal-title">Choisir Groupe</h5>
-            <button type="button" class="close" @click="cancelEditedEmployee" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="form-group">
-            <label>Nom Groupe</label>
-          <input type="text" class="form-control" required v-model="editEmployeeData.nom">
-        </div>
-        
-          </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" @click="cancelEditedEmployee" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success"   @click="MethodeditEmployee" >Save</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-                 <!----edit-modal end--------->	   
-                 
-                 
-
-    
-    
-                 <!----edit-modal end--------->   
-                 
-              
-              
-             
+               
+               
                </div>
+            </div>
+            
+          </div> </div>       
+
+               
+               
+               
+               
+               
+ 
+               
+            
+            
+           
+             </div>
+          </div>
+        
           
-            <!------main-content-end----------->
       </template>
      
      <style scoped>
@@ -250,24 +188,21 @@
     </style>
     
     <script>
-  import axios from 'axios';  
-    export default {
-    
-      data() {
-        return {
-          employees: [],
-          editEmployeeData: {
-        id: "",
-        nom: "",
-        etudiant: "",
-        
-          },
-          editedEmployeeIndex: null,
-        };
   
-  
-      },
-      mounted() {
+  import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      students: [],
+      selectedStudents: [],
+      groupName: '' // Added data property for group name
+    };
+  },
+
+  mounted() {
+    this.fetchStudentsOrderedByFormation();
+
         $(".xp-menubar").on('click', function () {
           $("#sidebar").toggleClass('active');
           $("#content").toggleClass('active');
@@ -285,59 +220,73 @@
           });
         });
       },
-      beforeMount() {
-          this.getEmployees();
-      },
-  
-      methods: {
-      getEmployees() {
-        axios.get('http://localhost:8080/api/etudiants/orderedByFormation')
+  methods: {
+    fetchStudentsOrderedByFormation() {
+      axios.get('http://localhost:8080/api/etudiants/orderedByFormation')
         .then(response => {
-          this.employees = response.data;
+          this.students = response.data;
         })
         .catch(error => {
           console.error('Error fetching students:', error);
         });
-          },
-  
-   
-  
-      MethodeditEmployee(id) {
-        const newGroup = { nom: this.editEmployeeData.nom };
-        axios.post('http://localhost:8080/api/groups/Add', this.newGroup)
-      .then(response => {
-        // Handle the success response
-        console.log('Formateur saved successfully:', response.data);
-        // Optionally, you can show a success message to the user
-      }).then(data => {
-                  console.log(data);
-                  this.getEmployees();
-              })
-      .catch(error => {
-        // Handle the error
-        console.error('Error saving student:', error);
-        // Optionally, you can show an error message to the user
-        alert('Error saving formateur. Please try again.');
-      });
-          // Show the edit modal
-          $('#editEmployeeModal').modal('hide');
-        },
-  
-  
-  
-      editEmployee(index) {
-          this.editedEmployeeIndex = index;
-          this.editEmployeeData = { ...this.employees[10] };
-    
-          // Show the edit modal
-          $('#editEmployeeModal').modal('show');
-        },
-      cancelEditedEmployee() {
-        // Close the edit modal
-        $('#editEmployeeModal').modal('hide');
-      },
-      
-      },
-    };
+    },
+    saveToGroup() {
+      if (this.groupName === '') {
+        alert('Please enter a group name.');
+        return;
+      }
+
+      if (this.selectedStudents.length === 0) {
+        alert('Please select at least one student.');
+        return;
+      }
+
+      const data = {
+        groupName: this.groupName,
+        studentIds: this.selectedStudents
+      };
+
+      axios.post('http://localhost:8080/api/group/save', data)
+        .then(response => {
+          console.log('Group saved successfully:', response.data);
+          alert('Group saved successfully!');
+          // Clear selected students and group name after saving
+          this.selectedStudents = [];
+          this.groupName = '';
+        })
+        .catch(error => {
+          console.error('Error saving group:', error);
+        });
+    }
+  }
+};
+
+
     </script>
-    
+     <style scoped>
+     /* Add your CSS styling here */
+     table {
+      margin-top: 30px;
+       width: 100%;
+       border-collapse: collapse;
+     }
+     
+     th, td {
+      
+       padding: 8px;
+       text-align: left;
+     }
+     
+     th {
+       background-color: #5519D2;    
+        color:white;
+        font-weight: 100;
+     }
+     button{
+       background-color:#FBAC14;
+       border:none;
+       color:white;
+       border-radius:30px;
+       margin-left:30px;
+     }
+     </style>

@@ -2,7 +2,7 @@
     <div class="wrapper">
          
          <div class="body-overlay"></div>	 
-       <!-------sidebar--design------------>
+    
   
   <div id="sidebar">
       <div class="sidebar-header">
@@ -54,15 +54,11 @@
       </ul>
   </div>
   
-  <!-------sidebar--design- close----------->
-  
-       
-       
-          <!-------page-content start----------->
+
        
           <div id="content">
            
-          <!------top-navbar-start-----------> 
+    
              
           <div class="top-navbar">
              <div class="xd-topbar">
@@ -115,8 +111,7 @@
              
            </div>
           </div>
-          <!------top-navbar-end----------->     
-                 <!------main-content-start-----------> 
+          
              
                  <div class="main-content">
                <div class="row">
@@ -147,8 +142,7 @@
                 </span>
               </th>
             <th>titre</th>
-            <th>objectifs</th>
-            <th>description</th>
+           
             <th>nbHeure</th>
             <th>bugdet</th>
             <th>ville</th>
@@ -167,8 +161,8 @@
                 </span>
               </td>
             <td>{{ employee.titre}}</td>
-            <td>{{ employee.objectifs }}</td>
-            <td>{{ employee.description }}</td>
+            
+            
             <td>{{ employee.nbHeure }}</td>
             <td>{{ employee.bugdet }}</td>
             <td>{{ employee.ville }}</td>
@@ -176,7 +170,7 @@
             <td>{{ employee.dateDebut }}</td>
             <td>{{ employee.dateFin }}</td>
               <td>
-                <!-- Vue event handling for edit and delete actions -->
+                
                 <a href="#" @click="editEmployee(index)" class="edit">
                   <i class="material-icons" data-toggle="tooltip" title="Edit" style="color:#FFC107;">&#xE254;</i>
                 </a>
@@ -206,7 +200,7 @@
               </div>
               
             </div> </div>				
-                         <!----add-modal start--------->
+                         
         <div class="modal fade" tabindex="-1" id="addEmployeeModal" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -266,14 +260,8 @@
       </div>
     </div>
     
-                 <!----edit-modal end--------->
                  
-                 
-                 
-                 
-                 
-               <!----edit-modal start--------->
-        <!-- Edit Employee Modal -->
+      
         <div class="modal fade" tabindex="-1" id="editEmployeeModal" role="dialog">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -334,10 +322,7 @@
         </div>
       </div>
     
-                 <!----edit-modal end--------->	   
                  
-                 
-               <!----delete-modal start--------->
         <div class="modal fade" tabindex="-1" id="deleteEmployeeModal" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -359,7 +344,7 @@
       </div>
     
     
-                 <!----edit-modal end--------->   
+              
                  
               
               
@@ -367,7 +352,7 @@
                </div>
             </div>
           
-            <!------main-content-end----------->
+      
       </template>
      
      <style scoped>

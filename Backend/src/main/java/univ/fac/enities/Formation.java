@@ -32,6 +32,8 @@ public class Formation {
 	  private int nbHeure;
 	  private Date dateDebut ;
 	  private Date dateFin;
+	  private String motcle;
+	  private String horaire;
 	  private double bugdet;
 	  @ManyToOne
 	  private Categorie categorieFormation;
@@ -66,7 +68,7 @@ public class Formation {
 
 	public Formation(Date dateFin) {
         this.dateFin = dateFin;
-        // Initialize other parameters
+       
     }
 
     public Date getDateFin() {

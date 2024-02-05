@@ -1,6 +1,6 @@
 <template>
   <section class="form-02-main">
-    <div class="container">
+    <div class="container" style=" height:587px;">
       <div class="row">
         <div class="col-md-12">
           <div class="_lk_de">

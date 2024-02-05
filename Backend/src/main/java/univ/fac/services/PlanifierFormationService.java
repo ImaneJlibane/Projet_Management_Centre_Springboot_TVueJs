@@ -143,7 +143,7 @@ public class PlanifierFormationService {
 
     private String generateLienFormulaire() {
 
-        return "http://localhost:8081/AdminDashboard";
+        return "http://localhost:8081/Feedback";
     }
 }
 

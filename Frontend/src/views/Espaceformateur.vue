@@ -22,7 +22,7 @@
                 <span class="input-group-text" id="speciality-icon">
                   <i class="bi bi-bookmark"></i>
                 </span>
-                <input type="text" v-model="Formateur.specialite" class="form-control" placeholder="Speciality" aria-describedby="speciality-icon" required />
+                <input type="text" v-model="Formateur.specailite" class="form-control" placeholder="Speciality" aria-describedby="speciality-icon" required />
               </div>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="city-icon">
@@ -93,7 +93,8 @@
 }
 
 .logo {
-  width: 50px; /* Adjust logo size as needed */
+  width: 50px;
+   /* Adjust logo size as needed */
 }
 
 /* Adjust form styling if needed */
@@ -110,10 +111,15 @@
   margin-top: 20px;
 }
 h2{
-    margin-left:120px;
+    margin-left:140px;
 }
 .btn-primary{
-margin-right:40px;
+margin-right:256px;
+border-radius:30px;
+width:150px;
+background-color:#FBAC14 ;
+border:none;
+height:40px;
 }
 img{
     margin-left:110px; 
@@ -137,7 +143,7 @@ export default {
         ville: '',
         numeroTel: '',
         dateNaissance: '',
-        specialite: '',
+       specailite: '',
         niveauScolair: '',
         remarques:'',
       },

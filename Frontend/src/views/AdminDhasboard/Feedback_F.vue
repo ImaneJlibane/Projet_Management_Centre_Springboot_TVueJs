@@ -2,7 +2,7 @@
     <div class="wrapper">
          
          <div class="body-overlay"></div>	 
-       <!-------sidebar--design------------>
+      
   
   <div id="sidebar">
       <div class="sidebar-header">
@@ -53,16 +53,11 @@
           </li>
       </ul>
   </div>
-  
-  <!-------sidebar--design- close----------->
-  
-       
-       
-          <!-------page-content start----------->
+
        
           <div id="content">
            
-          <!------top-navbar-start-----------> 
+          
              
           <div class="top-navbar">
              <div class="xd-topbar">
@@ -115,8 +110,7 @@
              
            </div>
           </div>
-          <!------top-navbar-end----------->     
-                 <!------main-content-start-----------> 
+          
              
                  <div class="main-content">
                <div class="row">
@@ -191,7 +185,7 @@
                </div>
             </div>
           
-            <!------main-content-end----------->
+           
       </template>
      
      <style scoped>
